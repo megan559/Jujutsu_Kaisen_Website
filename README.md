@@ -10,9 +10,7 @@ Welcome to the **Jujutsu Kaisen Website** repository! This project is a fan-made
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Setup](#setup)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -48,3 +46,7 @@ To run the project locally, follow these steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/megan559/Jujutsu_Kaisen_Website.git
+
+## Acknowledgments
+
+Special thanks to the creators of Jujutsu Kaisen for inspiring this project. This is a fan-made website and is not affiliated with the official franchise.
