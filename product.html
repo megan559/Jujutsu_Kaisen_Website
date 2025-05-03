@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JJK Merchandise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body class="">
+    <h2>OUR MERCH</h2>
+    <div id="cart-section">
+        <div id="cart">
+            <i class="fa-solid fa-shopping-cart"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="product-card">
+            <img src="./assets/shirt.jpeg" alt="JJK Shirt">
+            <h3>JJK Graphic Shirt</h3>
+            <p>25.00 AED<i class="fa-solid fa-star"></i> 4.8</p>
+            <p class="desc">Cool JJK anime graphic shirt.</p>
+            <div class="buttons">
+                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./assets/hoodie.jpeg" alt="JJK Hoodie">
+            <h3>JJK Hoodie</h3>
+            <p>40.00 AED<i class="fa-solid fa-star"></i> 4.9</p>
+            <p class="desc">Warm hoodie with JJK design.</p>
+            <div class="buttons">
+                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./assets/poster.jpeg" alt="JJK Poster">
+            <h3>JJK Wall Poster</h3>
+            <p>15.00 AED<i class="fa-solid fa-star"></i> 4.7</p>
+            <p class="desc">High-quality anime poster.</p>
+            <div class="buttons">
+                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+        <br>
+
+        <div class="product-card">
+            <img src="./assets/figure.jpeg" alt="JJK Figure">
+            <h3>Gojo Satoru Figure</h3>
+            <p>55.00 AED<i class="fa-solid fa-star"></i> 5.0</p>
+            <p class="desc">Premium quality Gojo figure.</p>
+            <div class="buttons">
+                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./assets/keychain1.jpeg" alt="JJK keychain">
+            <h3>JJK Keychain</h3>
+            <p>20.00 AED<i class="fa-solid fa-star"></i> 4.6</p>
+            <p class="desc">Dual Gojo and Geto keychain.</p>
+            <div class="buttons">
+                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="./assets/mug.jpeg" alt="JJK Mug">
+            <h3>JJK Mug</h3>
+            <p>10.00 AED<i class="fa-solid fa-star"></i> 4.5</p>
+            <p class="desc">Stylish JJK Mug.</p>
+            <div class="buttons">
+                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-tab">
+        <h1>Your Cart</h1>
+        <div class="cartlist"></div>
+        <div class="btn">
+            <button class="close">CLOSE</button>
+            <button class="checkout">Check out</button>
+            </div>
+ </div>
+        </div>
+        <script>
+            let cartCount = 0;
+            let cartItems = {};
+        
+            function addToCart(event) {
+                let productCard = event.target.closest('.product-card');
+                let productName = productCard.querySelector('h3').textContent;
+                let productPrice = productCard.querySelector('p').textContent.split(" ")[0];
+                let productImage = productCard.querySelector('img').src;
+        
+                if (cartItems[productName]) {
+                    cartItems[productName].quantity += 1;
+                } else {
+                    cartItems[productName] = {
+                        name: productName,
+                        price: productPrice,
+                        image: productImage,
+                        quantity: 1
+                    };
+                }
+        
+                cartCount++;
+                document.getElementById('cart-count').textContent = cartCount;
+                updateCartUI();
+            }
+        
+            function updateCartUI() {
+                let cartList = document.querySelector('.cartlist');
+                cartList.innerHTML = '';
+        
+                Object.values(cartItems).forEach(item => {
+                    let cartItem = document.createElement('div');
+                    cartItem.classList.add('item');
+                    cartItem.innerHTML = `
+                        <div class="image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="name">${item.name}</div>
+                        <div class="totalprice">${item.price} AED</div>
+                        <div class="quantity">
+                            <span class="minus" onclick="updateQuantity('${item.name}', -1)">-</span>
+                            <span>${item.quantity}</span>
+                            <span class="plus" onclick="updateQuantity('${item.name}', 1)">+</span>
+                        </div>
+                    `;
+                    cartList.appendChild(cartItem);
+                });
+            }
+        
+            function updateQuantity(productName, change) {
+                if (cartItems[productName]) {
+                    cartItems[productName].quantity += change;
+        
+                    if (cartItems[productName].quantity <= 0) {
+                        delete cartItems[productName];
+                    }
+        
+                    cartCount += change;
+                    if (cartCount < 0) cartCount = 0;
+                    document.getElementById('cart-count').textContent = cartCount;
+        
+                    updateCartUI();
+                }
+            }
+        
+            document.querySelectorAll('.buy-btn').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+        
+            let cart = document.querySelector('#cart');
+            let closeCart = document.querySelector('.close');
+            let cartTab = document.querySelector('.cart-tab');
+        
+            cart.addEventListener('click', () => {
+                document.body.classList.toggle('showcart');
+            });
+        
+            closeCart.addEventListener('click', () => {
+                document.body.classList.remove('showcart');
+            });
+        </script>
+        
+   
+</body>
+</html>
+

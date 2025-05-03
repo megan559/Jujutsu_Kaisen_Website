@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jujutsu Kaisen Episodes</title>
+    <style>
+        @font-face {
+            font-family: 'JujutsuKaisen';
+            src: url('./assets/JujutsuKaisen.ttf') format('truetype');
+        }
+
+        body{
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1{
+            font-family: 'JujutsuKaisen', sans-serif;
+            font-size: 60px;
+            color: #990000;
+            text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+        }
+
+        .episodes-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .episode{
+            background: #222;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .episode:hover{
+            transform: scale(1.05);
+            background: #333;
+        }
+
+        .episode img{
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .episode h2{
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .watch-btn{
+            display: inline-block;
+            padding: 8px 12px;
+            background: #990000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .watch-btn:hover{
+            background: #cc0000;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Jujutsu Kaisen Episodes</h1>
+
+    <div class="episodes-container">
+        <div class="episode">
+            <img src="./assets/ep1.jpg" alt="Episode 1">
+            <h2>Episode 1: Ryomen Sukuna</h2>
+            <a href="https://anicrush.to/watch/jujutsu-kaisen-tv.6N3YTk?ep=1" target="_blank" class="watch-btn">Watch Now</a>
+        </div>
+
+        <div class="episode">
+            <img src="./assets/ep2.jpg" alt="Episode 2">
+            <h2>Episode 2: For Myself</h2>
+            <a href="https://anicrush.to/watch/jujutsu-kaisen-tv.6N3YTk?ep=2" target="_blank" class="watch-btn">Watch Now</a>
+        </div>
+
+        <div class="episode">
+            <img src="./assets/ep3.jpg" alt="Episode 3">
+            <h2>Episode 3: Girl of Steel</h2>
+            <a href="https://anicrush.to/watch/jujutsu-kaisen-tv.6N3YTk?ep=3" target="_blank" class="watch-btn">Watch Now</a>
+        </div>
+
+        <div class="episode">
+            <img src="./assets/ep4.jpg" alt="Episode 4">
+            <h2>Episode 4: Curse Womb Must Die</h2>
+            <a href="https://anicrush.to/watch/jujutsu-kaisen-tv.6N3YTk?ep=4" target="_blank" class="watch-btn">Watch Now</a>
+        </div>
+        
+        <div class="episode">
+            <img src="./assets/ep5.jpg" alt="Episode 5">
+            <h2>Episode 5: Curse Womb Must Die II</h2>
+            <a href="https://anicrush.to/watch/jujutsu-kaisen-tv.6N3YTk?ep=5" target="_blank" class="watch-btn">Watch Now</a>
+        </div>
+        <div class="episode">
+            <img src="./assets/ep6.jpg" alt="Episode 6">
+            <h2>Episode 6: After Rain</h2>
+            <a href="https://anicrush.to/watch/jujutsu-kaisen-tv.6N3YTk?ep=6" target="_blank" class="watch-btn">Watch Now</a>
+        </div>
+        <div class="episode">
+            <img src="./assets/ep7.jpg" alt="Episode 7">
+            <h2>Episode 7: Fight</h2>
+            <a href="https://anicrush.to/watch/jujutsu-kaisen-tv.6N3YTk?ep=7" target="_blank" class="watch-btn">Watch Now</a>
+        </div>
+        <div class="episode">
+            <img src="./assets/ep8.jpg" alt="Episode 8">
+            <h2>Episode 8: Boredom</h2>
+            <a href="https://anicrush.to/watch/jujutsu-kaisen-tv.6N3YTk?ep=8" target="_blank" class="watch-btn">Watch Now</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

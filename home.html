@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @font-face{
+        font-family: 'JujutsuKaisen';
+        src: url('./assets/JujutsuKaisen.ttf') format('truetype');
+        }
+        body{
+            background-color: rgb(211, 151, 151);
+            color: rgb(240, 232, 232);
+            text-align: center;
+            background-repeat: none;
+            background-size: cover;
+            margin-top: 200px;
+        }
+        video{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            object-fit: cover;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+        }
+        .text{
+            font-family: 'JujutsuKaisen';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white; 
+            font-size: 35px; 
+            padding: 15px; 
+            border-radius: 5px; 
+        }
+    </style>
+</head>
+<body>  
+        <video autoplay loop muted>
+            <source src="./assets/slay.MP4" type="video/MP4">
+        </video>
+<font size="6">
+    <div class="text" style="text-shadow: 2px 2px rgb(158, 158, 9); ">Welcome to the Fanpage!</div> 
+</font>
+</body>
+</html>

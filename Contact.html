@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style2.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+     .header {
+            width: 100%;
+            background: rgba(94, 40, 40, 0.7); 
+            backdrop-filter: blur(5px); 
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: none;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: slideDown 1s forwards 0.5s;
+        }
+
+        @keyframes slideDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+            color: white; 
+            padding: 10px;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLogo 1s forwards 1s;
+        }
+
+        @keyframes slideInLogo {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .menu {
+            display: flex;
+            gap: 40px;
+            margin-right: 100px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: rgb(254, 254, 254);
+            font-size: 1.3rem;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s;
+            font-family: 'Times New Roman', Times, serif;
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        .menu a:nth-child(1) { animation: slideInMenu 1s forwards 0.8s; }
+        .menu a:nth-child(2) { animation: slideInMenu 1s forwards 1s; }
+        .menu a:nth-child(3) { animation: slideInMenu 1s forwards 1.2s; }
+        .menu a:nth-child(4) { animation: slideInMenu 1s forwards 1.4s; }
+        .menu a:nth-child(5) { animation: slideInMenu 1s forwards 1.6s; }
+
+        @keyframes slideInMenu {
+            0% { transform: translateY(-30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .menu a:hover {
+            color: #d4af37; 
+            transform: scale(1.1);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUpIframe 1s forwards 1.5s;
+        }
+
+        @keyframes slideUpIframe {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+<body>
+    <div class="container">
+        <h1 style=" font-family: 'JujutsuKaisen'; color: aliceblue; font-size: 40px; text-shadow: 2px 2px rgb(8, 5, 5);">Contact Us</h1>
+        <div class="contact-box">
+            <form>
+                <label for="name" align="left">Full Name</label>
+                <input type="text" id="name" placeholder="Your Name">
+
+                <label for="email" align="left">E-mail</label>
+                <input type="email" id="email" placeholder="Your Email">
+
+                <label for="message" align="left">Message</label>
+                <textarea id="message" placeholder="Your Message"></textarea>
+
+                <button type="submit">Contact Us</button>
+            </form>
+
+            <div class="contact-info">
+                <h3>Contact</h3>
+                <p>jjkfanpage@info.ae</p>
+                <h3>Based in</h3>
+                <p>Dubai</p>
+
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://x.com/?lang=en"><i class='bx bxl-twitter'></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
