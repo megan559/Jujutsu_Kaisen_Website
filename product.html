@@ -9,8 +9,8 @@
 </head>
 <body class="">
     <h2>OUR MERCH</h2>
-    <div id="cart-section">
-        <div id="cart">
+    <div id="cart-section" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <div id="cart" >
             <i class="fa-solid fa-shopping-cart"></i>
             <span id="cart-count">0</span>
         </div>
@@ -23,7 +23,7 @@
             <p>25.00 AED<i class="fa-solid fa-star"></i> 4.8</p>
             <p class="desc">Cool JJK anime graphic shirt.</p>
             <div class="buttons">
-                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="buy-btn" onclick="addToCart(event)" >Buy Now</button>
                 <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <p>40.00 AED<i class="fa-solid fa-star"></i> 4.9</p>
             <p class="desc">Warm hoodie with JJK design.</p>
             <div class="buttons">
-                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="buy-btn" onclick="addToCart(event)">Buy Now</button>
                 <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
             </div>
         </div>
@@ -45,7 +45,7 @@
             <p>15.00 AED<i class="fa-solid fa-star"></i> 4.7</p>
             <p class="desc">High-quality anime poster.</p>
             <div class="buttons">
-                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="buy-btn" onclick="addToCart(event)">Buy Now</button>
                 <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <p>55.00 AED<i class="fa-solid fa-star"></i> 5.0</p>
             <p class="desc">Premium quality Gojo figure.</p>
             <div class="buttons">
-                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="buy-btn" onclick="addToCart(event)">Buy Now</button>
                 <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
             </div>
         </div>
@@ -68,7 +68,7 @@
             <p>20.00 AED<i class="fa-solid fa-star"></i> 4.6</p>
             <p class="desc">Dual Gojo and Geto keychain.</p>
             <div class="buttons">
-                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="buy-btn" onclick="addToCart(event)">Buy Now</button>
                 <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
             </div>
         </div>
@@ -79,45 +79,90 @@
             <p>10.00 AED<i class="fa-solid fa-star"></i> 4.5</p>
             <p class="desc">Stylish JJK Mug.</p>
             <div class="buttons">
-                <button class="buy-btn" onclick="addToCart()">Buy Now</button>
+                <button class="buy-btn" onclick="addToCart(event)" >Buy Now</button>
                 <button class="wishlist"><i class="fa-solid fa-heart"></i></button>
             </div>
         </div>
     </div>
 
-    <div class="cart-tab">
+    <div class="cart-tab" >
         <h1>Your Cart</h1>
         <div class="cartlist"></div>
         <div class="btn">
             <button class="close">CLOSE</button>
-            <button class="checkout">Check out</button>
+            <button class="checkout" id="checkout">Check out</button>
             </div>
  </div>
         </div>
         <script>
-            let cartCount = 0;
-            let cartItems = {};
-        
+	document.getElementById("checkout").addEventListener('click',logg);
+
+		
+	if (sessionStorage.getItem("cartCount")!=null){
+		
+		var cartCount=parseInt(sessionStorage.getItem("cartCount"));
+		var cartItems=JSON.parse(sessionStorage.getItem("cartItems"));
+		document.getElementById('cart-count').innerHTML = cartCount;
+		updateCartUI();
+		}
+	else{
+	
+            var cartCount = 0;
+            var cartItems = {};
+        }
+	function logg(){
+		if (sessionStorage.getItem("loggedIn")==="false" || !sessionStorage.getItem("loggedIn")){
+										
+		
+document.getElementById('cart-count').innerHTML = 0;
+sessionStorage.setItem("cartCount",0);
+cartCount=0;
+cartItems={};
+sessionStorage.setItem("cartItems",JSON.stringify({}));
+document.getElementById('cart-count').textContent = cartCount;
+parent.document.getElementById("content").src="login.html"
+updateCartUI()
+			
+			}
+else{
+alert("purchase successful");
+document.getElementById('cart-count').innerHTML = 0;
+sessionStorage.setItem("cartCount",0);
+cartCount=0;
+cartItems={};
+sessionStorage.setItem("cartItems",JSON.stringify({}));
+document.getElementById('cart-count').textContent = cartCount;
+updateCartUI()
+}}
             function addToCart(event) {
-                let productCard = event.target.closest('.product-card');
-                let productName = productCard.querySelector('h3').textContent;
-                let productPrice = productCard.querySelector('p').textContent.split(" ")[0];
-                let productImage = productCard.querySelector('img').src;
-        
+
+                
+                let productName=event.target.parentElement.parentElement.querySelector('h3').textContent;
+                let productPrice=event.target.parentElement.parentElement.querySelector('p').textContent.split(' ')[0]; 
+          
+                let productImage = event.target.parentElement.parentElement.querySelector('img').src;
                 if (cartItems[productName]) {
                     cartItems[productName].quantity += 1;
                 } else {
                     cartItems[productName] = {
                         name: productName,
-                        price: productPrice,
+                        price:productPrice,
                         image: productImage,
                         quantity: 1
                     };
                 }
+               
+   
+  cartCount++
+   document.getElementById('cart-count').innerHTML = cartCount;
+   sessionStorage.setItem("cartCount",cartCount);
+   sessionStorage.setItem("cartItems",JSON.stringify(cartItems));
+   
+
+updateCartUI();
+
+	           
         
-                cartCount++;
-                document.getElementById('cart-count').textContent = cartCount;
-                updateCartUI();
             }
         
             function updateCartUI() {
@@ -159,9 +204,7 @@
                 }
             }
         
-            document.querySelectorAll('.buy-btn').forEach(button => {
-                button.addEventListener('click', addToCart);
-            });
+          
         
             let cart = document.querySelector('#cart');
             let closeCart = document.querySelector('.close');

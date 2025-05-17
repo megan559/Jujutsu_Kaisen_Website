@@ -1,4 +1,3 @@
-<DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +8,7 @@
       font-family: 'JujutsuKaisen';
       src: url('./assets/JujutsuKaisen.ttf') format('truetype');
     }
-    html, body {
+    body {
       font-family: 'JujutsuKaisen';
       background-color: rgb(54, 70, 104);
       color: black;
@@ -19,7 +18,6 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
-      overflow: hidden;
     }
     h1 {
       cursor: pointer;
@@ -109,7 +107,6 @@
     .profile-name {
       font-weight: bold;
       margin-bottom: 4px;
-      font-family:Times new roman;	
     }
 
     .profile-email {
@@ -140,15 +137,13 @@
       <a href="Contact.html" target="content">Contact Us</a>
     </nav>
   </div>
-
-
   <div class="profile-wrapper" id="profile">
     <button class="account-button" id="accountBtn">
       <img src="https://i.pravatar.cc/300" alt="User PFP" />
     </button>
     <div class="profile-card" id="profileCard">
-      <div class="profile-name" id="profile_name"></div>
-      <div class="prev-purchase" id="prev_purchase"><a href="histiroy.html" target="content">purchase history</a></div>
+      <div class="profile-name">John Doe</div>
+      <div class="profile-email">john.doe@example.com</div>
       <div class="logout" id="logout">logout</div>	
     </div>
   </div>
@@ -159,32 +154,23 @@
     document.getElementById("logout").addEventListener("click",function(){
 localStorage.clear();
 sessionStorage.clear();
-document.getElementById("rl").style.display = "inline";
-document.getElementById("profile").style.display = "none";
-location.reload();
+document.getElementById("rl").style.display = "inline"
+document.getElementById("profile").style.display = "none"
 });
     document.getElementById("title").addEventListener("click", function () {
       location.reload();
     });
     if (localStorage.getItem("loggedIn") !== "true") {
       localStorage.setItem("loggedIn", "false");
-	document.getElementById("profile").style.display = "none"
     } else {
       sessionStorage.setItem("loggedIn", "true");
-      sessionStorage.setItem("username",localStorage.getItem("username"));
       document.getElementById("rl").style.display = "none";
-      document.getElementById("profile_name").innerHTML=localStorage.getItem("username");
-      document.getElementById("profile").style.display = "inline";
-          	
     }
 
     if (sessionStorage.getItem("loggedIn") !== "true") {
       sessionStorage.setItem("loggedIn", "false");
-      document.getElementById("profile").style.display = "none"
     } else {
       document.getElementById("rl").style.display = "none";
-      document.getElementById("profile_name").innerHTML=sessionStorage.getItem("username");
-      document.getElementById("profile").style.display = "inline";	
     }
   </script>
 </body>

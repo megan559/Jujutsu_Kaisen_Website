@@ -100,16 +100,16 @@
     <div class="container">
         <h1 style=" font-family: 'JujutsuKaisen'; color: aliceblue; font-size: 40px; text-shadow: 2px 2px rgb(8, 5, 5);">Contact Us</h1>
         <div class="contact-box">
-            <form>
+            <form id="contactForm">
                 <label for="name" align="left">Full Name</label>
-                <input type="text" id="name" placeholder="Your Name">
+                <input type="text" id="name" placeholder="Your Name" required>
 
                 <label for="email" align="left">E-mail</label>
-                <input type="email" id="email" placeholder="Your Email">
+                <input type="email" id="email" placeholder="Your Email" required>
 
                 <label for="message" align="left">Message</label>
-                <textarea id="message" placeholder="Your Message"></textarea>
-
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <div id="formMessage" style="color: green; margin-top: 10px;"></div>
                 <button type="submit">Contact Us</button>
             </form>
 
@@ -127,5 +127,34 @@
             </div>
         </div>
     </div>
+    <script>
+       let formMessage = document.getElementById('formMessage');
+    document.getElementById("contactForm").addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var message = document.getElementById('message').value.trim();
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var wordCount = message.split(/\s+/).filter(Boolean).length;
+    formMessage.textContent = '';
+    formMessage.style.color = 'red';
+    if (name.length < 2) {
+        formMessage.textContent = "Please enter a valid name.";
+        return;
+    }
+    if (!emailRegex.test(email)){
+        formMessage.textContent = "Please enter a valid email address.";
+        return;
+    }
+    if(wordCount > 500){
+        formMessage.textContent = "Message should not exceed 500 words.";
+        return;
+    }
+    formMessage.style.color = 'green';
+    formMessage.textContent = "Form submitted successfully!";
+    form.reset();
+});
+    </script>
     </body>
     </html>

@@ -22,8 +22,8 @@
             <i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="remember-forgot">
-                        <label><input type="Checkbox">Remember me</label>
-                        <a href="#"> Suggest strong password?</a>
+                        
+                        <a href="#" onclick="event.preventDefault;suggestpassword();"> Suggest strong password?</a>
                     </div>
                     <button onclick="validateReg(event)" class="btn">Register</button>
                     <div class="register-link">
@@ -35,15 +35,54 @@
   </div>
 </body>
 <script>
+	function suggestpassword(){
+		const specialCharacters = [
+  '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+',
+  '{', '}', '[', ']', '|', '\\', ':', ';', '"', "'", '<', '>', ',', '.', 
+  '?', '/', '~', '^', '§', '©', '®', '°', '€', '£', '¥'
+];
+		let passwordstring=""
+		for(let i=0;i<16;i++){
+var x=Math.floor(Math.random() * 4);
+if (x==0){passwordstring+=String.fromCharCode(97 + Math.floor(Math.random() * 26));}
+else if(x==1){passwordstring+=String.fromCharCode(65 + Math.floor(Math.random() * 26));}
+else if (x==2){passwordstring+=Math.floor(Math.random() * 10);}
+else {passwordstring+=specialCharacters[Math.floor(Math.random() * 39)];}
+
+}document.getElementById("Password").value=passwordstring;
+console.log(passwordstring);}
     function validateReg(event){
         event.preventDefault();
         var username=document.getElementById("username").value.trim();
         var usernameMsg=document.getElementById("usernameMsg");
-        var eRegex=/(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)|(^\d{10}$)/;
+        //var eRegex=/(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)|(^\d{10}$)/;
         var password=document.getElementById("Password").value;
         var passwordMsg=document.getElementById("passwordMsg"); 
-        if(eRegex.test(username)){
+        if(username){
             usernameMsg.innerHTML="<span class='message'>Validated</span>";
+	if(password.length>= 8 && password.length <=16){
+            passwordMsg.innerHTML="<span class='message'>Validated</span>";
+	    fetch("/website/lr.php", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    type: "register",
+    uname: username,
+    password: password
+  })
+})
+.then(response => response.json())
+.then(data => {console.log("Response:", data);
+window.location.href = 'home.html';})
+.catch(error => {console.error("Error:", error);
+alert("enter a unique username");});
+        }else{
+            passwordMsg.innerHTML="<span class='wiggle'>  Must be 8-16 characters</span>";
+        }
+
+
         }
         else{
             usernameMsg.innerHTML="<span class='wiggle'>  Wrong format</span>";
@@ -52,6 +91,7 @@
         }else{
             passwordMsg.innerHTML="<span class='wiggle'>  Must be 8-16 characters</span>";
         }
+
     }
 </script>
 </html>
